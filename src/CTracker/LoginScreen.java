@@ -1,5 +1,6 @@
 package CTracker;
 import javax.swing.JPanel;
+import javax.swing.JFrame;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -9,12 +10,17 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
 import CTracker.util.Connector;
+import CTracker.App.*;
+import CTracker.HomeScreen.*;
 
 
 public class LoginScreen extends JPanel {
     public JTextField tUser=null;
     public JTextField tpass=null;
-    LoginScreen(){
+    public JFrame parentFrame = null;
+
+    LoginScreen(JFrame parentFrame) {
+        this.parentFrame = parentFrame;
         buttonEvent obj= new buttonEvent();
         setLayout(new GridBagLayout());
         
@@ -59,6 +65,10 @@ class buttonEvent implements ActionListener{
                 }
                 if(rs.getString("PASS").equals(tpass.getText())){
                     System.out.println("Logged In");
+                    
+                    parentFrame.getContentPane().setVisible( false );
+                    parentFrame.setContentPane(new HomeScreen(parentFrame));
+                    
                     return;
                 }
                 else{
