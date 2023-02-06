@@ -1,30 +1,50 @@
 package util;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-import java.sql.*;
-
-public class connector {
-    public static void main( String args[] ) {
+public class Connector {
+    void connect (){
         Connection c = null;
-        Statement stmt = null;
+        Statement cursor = null;
         try {
             Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:test.db");
+            c = DriverManager.getConnection("jdbc:sqlite:data.db");
             System.out.println("Opened database successfully");
-            stmt = c.createStatement();
-            String sql = "CREATE TABLE COMPANY " +
-                        "(ID INT PRIMARY KEY     NOT NULL," +
-                        " NAME           TEXT    NOT NULL, " + 
-                        " AGE            INT     NOT NULL, " + 
-                        " ADDRESS        CHAR(50), " + 
-                        " SALARY         REAL)"; 
-            
-                        stmt.executeUpdate(sql);
-                        stmt.close();
-                        c.close();
-        } catch ( Exception e ) {
+            cursor = c.createStatement();
+            cursor.close();
+            c.close();
+        } catch ( SQLException e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        } catch(Exception e){
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         }
-        System.out.println("Table created successfully");
+        
+    }
+
+    void insert(String user,String pass){
+        Connection c = null;
+        Statement cursor = null;
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:data.db");
+            System.out.println("Opened database successfully");
+            cursor = c.createStatement();
+            String sql = "INSERT INTO Users (ID,NAME,PASS) " +
+                        "VALUES (100,"+user+","+pass+");"; 
+            cursor.executeUpdate(sql);
+            cursor.close();
+            c.close();
+        } catch ( SQLException e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        } catch(Exception e){
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
     }
 }

@@ -8,9 +8,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 
-public class LoginScreen extends JPanel implements ActionListener{
+public class LoginScreen extends JPanel {
     LoginScreen(){
-        LoginScreen obj= new LoginScreen();
+        
 
         setLayout(new GridBagLayout());
         
@@ -34,7 +34,7 @@ public class LoginScreen extends JPanel implements ActionListener{
         LoginContainerPass.add(t1);
 
         JButton b1= new JButton("Log In");
-        b1.addActionListener(obj);
+    
 
         LoginContainer.add(LoginContainerUser);
         LoginContainer.add(LoginContainerPass);
@@ -42,7 +42,5 @@ public class LoginScreen extends JPanel implements ActionListener{
         add(LoginContainer);
     }
     
-    public void actionPerformed(ActionEvent e){
-
-    }
+  
 }
