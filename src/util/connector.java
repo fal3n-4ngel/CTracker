@@ -82,9 +82,8 @@ public class Connector {
             cursor = c.createStatement();
             String sql = "SELECt PASS FROM Users Where NAME='"+User+"'";
             ResultSet r = cursor.executeQuery(sql);
-            while ( r.next() ) {
-                String s=r.getString("PASS");
-                System.out.println(s);
+            if(r.getString("PASS")==Pass){
+                System.out.println("Logged In");
             }
             cursor.close();
             c.close();
