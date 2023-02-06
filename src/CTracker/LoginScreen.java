@@ -6,14 +6,16 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
 import CTracker.util.Connector;
 
 
 public class LoginScreen extends JPanel {
+    public JTextField tUser=null;
+    public JTextField tpass=null;
     LoginScreen(){
-        
-
+        buttonEvent obj= new buttonEvent();
         setLayout(new GridBagLayout());
         
         JPanel LoginContainer=new JPanel();
@@ -25,17 +27,18 @@ public class LoginScreen extends JPanel {
         LoginContainerUser.setLayout(new BoxLayout(LoginContainerUser,BoxLayout.X_AXIS));
         JLabel Luser=new JLabel("UserName:");
         LoginContainerUser.add(Luser);
-        JTextField tUser=new JTextField(20);
+        tUser=new JTextField(20);
         LoginContainerUser.add(tUser);
 
         JPanel LoginContainerPass=new JPanel();
         LoginContainerPass.setLayout(new BoxLayout(LoginContainerPass,BoxLayout.X_AXIS));
         JLabel Lpass=new JLabel("Password:");
         LoginContainerPass.add(Lpass);
-        JTextField t1=new JTextField(20);
-        LoginContainerPass.add(t1);
+        tpass=new JTextField(20);
+        LoginContainerPass.add(tpass);
 
         JButton b1= new JButton("Log In");
+        b1.addActionListener(obj);
     
 
         LoginContainer.add(LoginContainerUser);
@@ -43,6 +46,31 @@ public class LoginScreen extends JPanel {
         LoginContainer.add(b1);
         add(LoginContainer);
     }
-    
-  
+
+class buttonEvent implements ActionListener{
+        buttonEvent(){}
+        public void actionPerformed(ActionEvent e){
+            Connector Con=new Connector();
+            try{
+                ResultSet rs= Con.execute("SELECT PASS FROM USERS WHERE NAME='"+tUser.getText()+"'");
+                if(rs.next()==false){
+                    System.out.println("New User");
+                    return;
+                }
+                if(rs.getString("PASS").equals(tpass.getText())){
+                    System.out.println("Logged In");
+                    return;
+                }
+                else{
+                    System.out.println("Wrong PassWord");
+                    return;
+                }
+
+            }
+            catch(Exception ex){
+                ex.printStackTrace();
+            }
+            
+        }
+    }
 }

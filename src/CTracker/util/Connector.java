@@ -10,7 +10,7 @@ public class Connector {
     Statement cursor = null;
     ResultSet rs=null;
 
-    Connector(){ // Initialise the connection for some reason ig
+    public Connector(){ // Initialise the connection for some reason ig
         try {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:data.db");
