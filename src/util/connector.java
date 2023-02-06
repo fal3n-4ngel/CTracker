@@ -26,7 +26,7 @@ public class Connector {
         
     }
 
-    void insert(String user,String pass){
+    static void insert(String user,String pass){
         Connection c = null;
         Statement cursor = null;
         try {
@@ -35,7 +35,7 @@ public class Connector {
             System.out.println("Opened database successfully");
             cursor = c.createStatement();
             String sql = "INSERT INTO Users (ID,NAME,PASS) " +
-                        "VALUES (100,"+user+","+pass+");"; 
+                        "VALUES (111,'"+user+"','"+pass+"'"+");"; 
             cursor.executeUpdate(sql);
             cursor.close();
             c.close();
@@ -47,4 +47,59 @@ public class Connector {
             System.exit(0);
         }
     }
-}
+
+    static void display(){
+        Connection c = null;
+        Statement cursor = null;
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:data.db");
+            System.out.println("Opened database successfully");
+            cursor = c.createStatement();
+            String sql = "SELECt * FROM Users";
+            ResultSet r = cursor.executeQuery(sql);
+            while ( r.next() ) {
+                String s=r.getString("NAME");
+                System.out.println(s);
+            }
+            cursor.close();
+            c.close();
+        } catch ( SQLException e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        } catch(Exception e){
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+    }
+    static void LogIn(String User,String Pass){
+        Connection c = null;
+        Statement cursor = null;
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:data.db");
+            System.out.println("Opened database successfully");
+            cursor = c.createStatement();
+            String sql = "SELECt PASS FROM Users Where NAME='"+User+"'";
+            ResultSet r = cursor.executeQuery(sql);
+            while ( r.next() ) {
+                String s=r.getString("PASS");
+                System.out.println(s);
+            }
+            cursor.close();
+            c.close();
+        } catch ( SQLException e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        } catch(Exception e){
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+    }
+
+
+    public static void main(String args[]) {
+        insert("user","pass");
+        LogIn("user","pass");
+        }
+    }
