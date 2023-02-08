@@ -45,8 +45,6 @@ public class LoginScreen extends JPanel {
 
         JButton b1= new JButton("Log In");
         b1.addActionListener(obj);
-    
-
         LoginContainer.add(LoginContainerUser);
         LoginContainer.add(LoginContainerPass);
         LoginContainer.add(b1);
@@ -65,9 +63,8 @@ class buttonEvent implements ActionListener{
                 }
                 if(rs.getString("PASS").equals(tpass.getText())){
                     System.out.println("Logged In");
-                    
                     parentFrame.getContentPane().setVisible( false );
-                    parentFrame.setContentPane(new HomeScreen(parentFrame));
+                    parentFrame.setContentPane(new HomeScreen(parentFrame,tUser.getText()));
                     
                     return;
                 }
