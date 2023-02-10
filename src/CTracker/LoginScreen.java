@@ -72,7 +72,6 @@ class buttonEvent implements ActionListener{
                     System.out.println("Wrong PassWord");
                     return;
                 }
-
             }
             catch(Exception ex){
                 ex.printStackTrace();
