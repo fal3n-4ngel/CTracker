@@ -12,6 +12,9 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneLayout;
+import javax.swing.SpringLayout;
+import javax.swing.*;
+
 import java.awt.Font;
 
 public class HomeScreen extends JPanel{
@@ -38,18 +41,24 @@ public class HomeScreen extends JPanel{
         }
         
         
-        JPanel userpanel=new JPanel();        
+        JPanel userpanel=new JPanel(); 
+        userpanel.setLayout(null);       
         userpanel.setOpaque(false);
-        
-        userpanel.setBackground(new Color(255, 255, 255));
+        userpanel.add(new JTitLabel("Hello"+user));
+        userpanel.setBackground(new Color(0, 10, 38));
         userpanel.setBounds(0,0,300,700);
-        add(userpanel);
+
 
         JPanel midpanel1=new JPanel();        
         midpanel1.setOpaque(true);
         midpanel1.setBackground(new Color(255, 255, 255));
-        midpanel1.setBounds(0,0,300,700);
-        add(midpanel1);
+        midpanel1.setBounds(270,0,100,700);
+
+
+
+        userpanel.add(midpanel1);
+
+        add(userpanel);
 
         JPanel labelpanel=new JPanel();
         labelpanel.setOpaque(true);
@@ -76,19 +85,17 @@ public class HomeScreen extends JPanel{
     }
 
 
+    
     public JScrollPane panecreator(int val){
-
         JPanel panel=new JPanel();
+        panel.setLayout(new GridLayout());
         JScrollPane centerbar;
         panel.setBackground(new Color(255, 255, 255));
         centerbar=new JScrollPane(panel);
-
         try{
             ((JPanel)centerbar.getViewport().getView()).setLayout(new GridLayout(5,1,0,10));
             centerbar.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-            centerbar.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED); 
-            centerbar.getViewport();
-            centerbar.setLayout(new ScrollPaneLayout());
+            centerbar.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);       
             centerbar.setBorder(null);
             if(c<5){
                 ((JPanel)centerbar.getViewport().getView()).setLayout(new GridLayout(5,1,10,10));
