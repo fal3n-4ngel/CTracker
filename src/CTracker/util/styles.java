@@ -7,8 +7,8 @@ import java.awt.Component;
 
 public class styles implements Border {
 	int radius;
-    int color;
-	public styles(int radius,int color) {
+    int color[];
+	public styles(int radius,int color[]) {
 		this.radius = radius;
         this.color=color;
 	}
@@ -22,7 +22,7 @@ public class styles implements Border {
 	}
 	@Override
 	public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-        g.setColor(new Color(color));
+        g.setColor(new Color(color[0],color[1],color[2]));
 		g.drawRoundRect(x,y,width-1,height-1,radius,radius);
         g.fillRoundRect(x,y,width-1,height-1,radius,radius);
 	}

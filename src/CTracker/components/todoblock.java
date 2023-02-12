@@ -35,7 +35,9 @@ public class todoblock extends JPanel{
         field2=todoss.getString("desc");
         field3=todoss.getString("datej");
         field4=todoss.getString("Status");
-        setBorder(new styles(20, 0x000000));
+        
+        int color[]=new int[]{ 65, 71, 70}; 
+        setBorder(new styles(20, color));
         setOpaque(false);
         setLayout(new GridLayout(1,5));
         JLabel subjectPane=new JLabel(field1);
