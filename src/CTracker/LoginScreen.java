@@ -10,9 +10,6 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
 import CTracker.util.Connector;
-import CTracker.App.*;
-import CTracker.HomeScreen.*;
-
 
 public class LoginScreen extends JPanel {
     public JTextField tUser=null;
@@ -64,7 +61,7 @@ class buttonEvent implements ActionListener{
                 if(rs.getString("PASS").equals(tpass.getText())){
                     System.out.println("Logged In");
                     parentFrame.getContentPane().setVisible( false );
-                    parentFrame.setContentPane(new HomeScreen(parentFrame,tUser.getText()));
+                    parentFrame.setContentPane(new HomePage(parentFrame,tUser.getText()));
                     
                     return;
                 }
