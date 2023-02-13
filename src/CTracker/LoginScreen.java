@@ -15,12 +15,11 @@ public class LoginScreen extends JPanel {
     public JTextField tUser=null;
     public JTextField tpass=null;
     public JFrame parentFrame = null;
-
     LoginScreen(JFrame parentFrame) {
         this.parentFrame = parentFrame;
         buttonEvent obj= new buttonEvent();
         setLayout(new GridBagLayout());
-
+        
         JPanel LoginContainer=new JPanel();
         LoginContainer.setLayout(new BoxLayout(LoginContainer,BoxLayout.Y_AXIS));
         JLabel Llog=new JLabel("Log In");
@@ -73,6 +72,7 @@ class buttonEvent implements ActionListener{
             catch(Exception ex){
                 ex.printStackTrace();
             }
+            
         }
     }
 }

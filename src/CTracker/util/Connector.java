@@ -7,15 +7,21 @@ import java.sql.Statement;
 
 public class Connector {
     Connection c = null;
-    Statement cursor = null;
     ResultSet rs=null;
+    private static Connection connection = null;
+    static Statement cursor = null;
+    
 
-    public Connector(){ // Initialise the connection for some reason ig
+    public static Connection getConn() throws SQLException {
+        if(connection == null) connection = DriverManager.getConnection("jdbc:sqlite:data.db");
+        return connection;
+    }
+    public Connector(){ // Initialise the connection ig
         try {
             Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:data.db");
-            cursor = c.createStatement();
-            
+            connection = getConn();
+            cursor = connection.createStatement();
+            cursor.setQueryTimeout(30); 
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -27,15 +33,16 @@ public class Connector {
     public ResultSet execute(String q) {
         try {
             rs = cursor.executeQuery(q);
+            return rs;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         catch (Exception e) {
             e.printStackTrace();
         }
-        return rs;
+        return null;
     }
-
+    
 }
 
 

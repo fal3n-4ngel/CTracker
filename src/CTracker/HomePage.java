@@ -7,36 +7,27 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
-
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.geom.Path2D;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.Font;
+import CTracker.util.globals;
 
 public class HomePage extends JPanel{
     public JFrame parentFrame = null; 
     public JPanel centerpane;
     public JScrollPane centerbar; 
-    int c;
-    ResultSet rs=null;
+    
+    
     HomePage(JFrame parentFrame,String user){
         this.parentFrame=parentFrame;
-
-        Connector Con=new Connector();
-        try{
-            rs= Con.execute("SELECT * FROM Todos");
-            System.out.print("Done");
-            c=0;
-            while(rs.next()!=false){
-                c++;
-            }
-            rs= Con.execute("SELECT * FROM Todos");
-        }
-        catch(Exception ex){
-            ex.printStackTrace();
-        }
+        buttonEvent obj = new buttonEvent();
+        
+        
         setLayout(null);
 
         JPanel userPanel=new JPanel();
@@ -61,6 +52,7 @@ public class HomePage extends JPanel{
         // the Nuttons
         JUserButton addButton = new JUserButton("New");
         addButton.setBounds(80, 300,120, 50);
+        addButton.addActionListener(obj);
         JUserButton creditButton = new JUserButton("Credits");
         creditButton.setBounds(80, 400,120, 50);
         JUserButton helpButton = new JUserButton("Help");
@@ -82,8 +74,9 @@ public class HomePage extends JPanel{
         labelpanel.setBorder(new styles(20, color));
         labelpanel.add(new JTitLabel("Subject"));
         labelpanel.add(new JTitLabel("Details"));
-        labelpanel.add(new JTitLabel("Start Date"));
+        labelpanel.add(new JTitLabel("Date"));
         labelpanel.add(new JTitLabel("Progress"));
+        labelpanel.add(new JTitLabel("     Delete"));
         labelpanel.setBackground(new Color(255, 255, 255));
 
         JPanel midpanel=new JPanel();
@@ -96,12 +89,19 @@ public class HomePage extends JPanel{
         centerpane.add(panecreator(5));
         centerpane.add(midpanel);
         centerpane.setBorder(null);
-        centerpane.setBounds(320,0,640,700);
+        centerpane.setBounds(320,0,650,700);
         add(centerpane);  
 
     }
     
-
+    class buttonEvent implements ActionListener{
+        buttonEvent(){}
+        public void actionPerformed(ActionEvent e){
+            JFrame addTask = new AddTask();
+            addTask.setVisible(true);
+            
+        }
+    }
 
 public JScrollPane panecreator(int val){
     JPanel panel=new JPanel();
@@ -109,19 +109,32 @@ public JScrollPane panecreator(int val){
     JScrollPane centerbar;
     panel.setBackground(new Color(255, 255, 255));
     centerbar=new JScrollPane(panel);
+    Connector Con=new Connector();
+    try{
+        globals.rse= Con.execute("SELECT * FROM Todos");
+        System.out.print("Done");
+        globals.c=0;
+        while(globals.rse.next()!=false){
+            globals.c++;
+        }
+        globals.rse= Con.execute("SELECT * FROM Todos");
+    }
+    catch(Exception ex){
+        ex.printStackTrace();
+    }
     try{
         ((JPanel)centerbar.getViewport().getView()).setLayout(new GridLayout(5,1,0,10));
         centerbar.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         centerbar.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);       
         centerbar.setBorder(null);
-        if(c<5){
+        if(globals.c<5){
             ((JPanel)centerbar.getViewport().getView()).setLayout(new GridLayout(5,1,10,10));
         }
         else{
-            ((JPanel)centerbar.getViewport().getView()).setLayout(new GridLayout(c,1,10,10));
+            ((JPanel)centerbar.getViewport().getView()).setLayout(new GridLayout(globals.c,1,10,10));
         }
-        while(rs.next()!=false){
-            ((JPanel)centerbar.getViewport().getView()).add(new todoblock(600, 75,rs));}
+        while(globals.rse.next()!=false){
+            ((JPanel)centerbar.getViewport().getView()).add(new todoblock(600, 75,globals.rse,centerbar,parentFrame));}
         }
     catch(Exception e){
         System.out.println(e);
