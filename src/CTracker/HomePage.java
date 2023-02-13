@@ -28,7 +28,8 @@ public class HomePage extends JPanel{
         this.user=user;
         globals.user=user;
         buttonEvent obj = new buttonEvent();
-        
+        buttonCreditEvent obj1 = new buttonCreditEvent();
+        buttonHelpEvent obj2 = new buttonHelpEvent();
         
         setLayout(null);
 
@@ -57,8 +58,10 @@ public class HomePage extends JPanel{
         addButton.addActionListener(obj);
         JUserButton creditButton = new JUserButton("Credits");
         creditButton.setBounds(80, 400,120, 50);
+        creditButton.addActionListener(obj2);
         JUserButton helpButton = new JUserButton("Help");
         helpButton.setBounds(80, 500,120, 50);
+        helpButton.addActionListener(obj1);
 
 
         userPanel.add(userNameLabel);
@@ -101,6 +104,23 @@ public class HomePage extends JPanel{
         public void actionPerformed(ActionEvent e){
             JFrame addTask = new AddTask(user,centerbar,parentFrame);
             addTask.setVisible(true);
+            
+        }
+    }
+
+    class buttonCreditEvent implements ActionListener{
+        buttonCreditEvent(){}
+        public void actionPerformed(ActionEvent e){
+            JFrame help = new helpScreen();
+            help.setVisible(true);
+            
+        }
+    }
+    class buttonHelpEvent implements ActionListener{
+        buttonHelpEvent(){}
+        public void actionPerformed(ActionEvent e){
+            JFrame credit = new creditsScreen();
+            credit.setVisible(true);
             
         }
     }
