@@ -12,6 +12,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import CTracker.HomePage;
+import CTracker.loading;
 import CTracker.util.Connector;
 import CTracker.util.styles;
 import CTracker.util.globals;
@@ -75,13 +78,13 @@ public class todoblock extends JPanel{
                 Con.execute("DELETE FROM todos WHERE rowid="+field5);
                 
                 try{
-                    globals.rse= Con.execute("SELECT * FROM Todos");
+                    globals.rse= Con.execute("SELECT * FROM Todos WHERE userid='"+globals.user+"'");
                     System.out.print("Done");
                     globals.c=0;
                     while(globals.rse.next()!=false){
                         globals.c++;
                     }
-                    globals.rse= Con.execute("SELECT * FROM Todos");
+                    globals.rse= Con.execute("SELECT * FROM Todos WHERE userid='"+globals.user+"'");
                 }
                 catch(Exception ex){
                     ex.printStackTrace();
@@ -91,8 +94,10 @@ public class todoblock extends JPanel{
                 ((JPanel)centerbar.getViewport().getView()).remove(block);
                 centerbar.revalidate();
                 centerbar.repaint();
-                parentFrame.setVisible(false);
-                parentFrame.setVisible(true);
+                parentFrame.setContentPane(new loading());
+                parentFrame.getContentPane().setVisible(false);
+                parentFrame.setContentPane(new HomePage(parentFrame, globals.user));
+                parentFrame.getContentPane().setVisible(true);
             }
             catch(Exception ex){
                 ex.printStackTrace();

@@ -20,11 +20,14 @@ import CTracker.util.globals;
 public class HomePage extends JPanel{
     public JFrame parentFrame = null; 
     public JPanel centerpane;
-    public JScrollPane centerbar; 
+    public JScrollPane centerbar;
+    public String user; 
     
     
-    HomePage(JFrame parentFrame,String user){
+    public HomePage(JFrame parentFrame,String user){
         this.parentFrame=parentFrame;
+        this.user=user;
+        globals.user=user;
         buttonEvent obj = new buttonEvent();
         
         
@@ -89,7 +92,7 @@ public class HomePage extends JPanel{
         centerpane.add(panecreator(5));
         centerpane.add(midpanel);
         centerpane.setBorder(null);
-        centerpane.setBounds(320,0,650,700);
+        centerpane.setBounds(320,0,800,700);
         add(centerpane);  
 
     }
@@ -97,7 +100,7 @@ public class HomePage extends JPanel{
     class buttonEvent implements ActionListener{
         buttonEvent(){}
         public void actionPerformed(ActionEvent e){
-            JFrame addTask = new AddTask();
+            JFrame addTask = new AddTask(user,centerbar,parentFrame);
             addTask.setVisible(true);
             
         }
@@ -111,13 +114,13 @@ public JScrollPane panecreator(int val){
     centerbar=new JScrollPane(panel);
     Connector Con=new Connector();
     try{
-        globals.rse= Con.execute("SELECT * FROM Todos");
+        globals.rse= Con.execute("SELECT * FROM Todos WHERE userid='"+user+"'");
         System.out.print("Done");
         globals.c=0;
         while(globals.rse.next()!=false){
             globals.c++;
         }
-        globals.rse= Con.execute("SELECT * FROM Todos");
+        globals.rse= Con.execute("SELECT * FROM Todos WHERE userid='"+user+"'");
     }
     catch(Exception ex){
         ex.printStackTrace();
