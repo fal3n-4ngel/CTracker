@@ -14,24 +14,10 @@ import java.awt.geom.RoundRectangle2D;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.sql.ResultSet;
 import CTracker.util.Connector;
-import CTracker.util.styles;
 import CTracker.components.todoblock;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.*;
-import javax.swing.border.LineBorder;
-import java.awt.*;
-import java.awt.geom.Path2D;
-import java.awt.geom.RoundRectangle2D;
-import java.awt.Font;
 import CTracker.util.globals;
-import CTracker.HomePage.*;
 
 public class AddTask extends JFrame {
     public static JComboBox<String> cb1;
