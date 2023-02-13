@@ -33,6 +33,7 @@ public class AddTask extends JFrame {
     AddTask(String username,JScrollPane centerbar,JFrame parentFrame){
         this.centerbar=centerbar;
         setTitle("Add TAsk");
+        setBounds(300, 100, 600, 500);
         this.parentFrame=parentFrame;
         this.user=username;
         this.setBackground(Color.WHITE);
