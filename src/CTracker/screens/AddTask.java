@@ -1,4 +1,4 @@
-package CTracker;
+package CTracker.screens;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;

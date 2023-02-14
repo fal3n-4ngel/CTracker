@@ -1,4 +1,4 @@
-package CTracker;
+package CTracker.screens;
 import CTracker.util.Connector;
 import CTracker.util.styles;
 import CTracker.components.todoblock;

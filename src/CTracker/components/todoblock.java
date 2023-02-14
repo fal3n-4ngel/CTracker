@@ -13,8 +13,8 @@ import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import CTracker.HomePage;
-import CTracker.loading;
+import CTracker.screens.HomePage;
+import CTracker.screens.loading;
 import CTracker.util.Connector;
 import CTracker.util.styles;
 import CTracker.util.globals;

@@ -1,4 +1,4 @@
-package CTracker;
+package CTracker.screens;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
@@ -35,7 +35,7 @@ public class LoginScreen extends JPanel implements ActionListener {
     private static JPasswordField passwordText;
     private static JUserButton loginButton;
 
-    LoginScreen(JFrame parentFrame) {
+    public LoginScreen(JFrame parentFrame) {
         this.parentFrame = parentFrame;
     }
 
@@ -173,19 +173,6 @@ public class LoginScreen extends JPanel implements ActionListener {
         }
 
 
-}
-
-
-
-class JTitLabel extends JLabel {
-    JTitLabel(String content){
-        setText(content);
-        setForeground(Color.BLACK);
-        setBackground(new Color(255, 255, 255));
-        setOpaque(false);
-        setFont(new Font("Verdana", Font.PLAIN, 20));
-        setPreferredSize(new Dimension(50, 50));
-    }
 }
 
 class JUserLabel extends JLabel {

@@ -1,10 +1,12 @@
 package CTracker;
 import javax.swing.JFrame;
 
-public class App {
+import CTracker.screens.LoginScreen;
 
+public class App {
+    public static JFrame ctracker;
     public static void main(String[] args) {
-        JFrame ctracker = new JFrame("C Tracker");
+        ctracker = new JFrame("C Tracker");
         ctracker.setSize(1150,700);
         LoginScreen sc = new LoginScreen(ctracker);
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
