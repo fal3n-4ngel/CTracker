@@ -4,6 +4,5 @@
 
 ## Screenshots
 
-<p align="center">
-  <img width="200" src="https://github.com/fal3n-4ngel/CTracker/blob/main/images/scr.png">
-</p>
+  <img width="500" src="https://i.postimg.cc/5Ndm9MbV/Screenshot-20230214-162706.png">
+
