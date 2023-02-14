@@ -48,13 +48,12 @@ public class LoginScreen extends JPanel implements ActionListener {
         JPanel lleftPanel = new JPanel();
         lleftPanel.add(new MyLabel(700,1000, Color.CYAN, Color.GREEN, Color.WHITE, Color.CYAN));
     
-       this.add(lleftPanel);
+        this.add(lleftPanel);
         leftPanel(lleftPanel);
 
         //login panel
         JPanel loginPanel = new JPanel();
         loginPanel.setBackground(Color.WHITE);
-       
         this.add(loginPanel);
         rightPanel(loginPanel);
 
@@ -65,22 +64,17 @@ public class LoginScreen extends JPanel implements ActionListener {
     public  void leftPanel(JPanel panel) {
         try {
             
-       
-  
-          
             Dimension size = new Dimension(600,1000);
-         
             panel.setPreferredSize(size);
             panel.setMinimumSize(size);
             panel.setMaximumSize(size);
             // panel.setSize(size);
             JLabel appName = new JLabel("CTracker");
             appName.setFont(new Font("Century", Font.PLAIN, 100));
-           appName.setForeground(Color.WHITE);
-           appName.setBounds(100, 400,400, 400);
-           // panel.add(appName);
-     panel.setForeground(Color.GREEN);
-           
+            appName.setForeground(Color.WHITE);
+            appName.setBounds(100, 400,400, 400);
+            // panel.add(appName);
+            panel.setForeground(Color.GREEN);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -89,8 +83,6 @@ public class LoginScreen extends JPanel implements ActionListener {
 
     public void rightPanel(JPanel panel) {
         
-       
-       
         final int LEFT_MARGIN = 80;
         final int TOP_MARGIN = 180+30;
         panel.setLayout(null);
@@ -98,12 +90,10 @@ public class LoginScreen extends JPanel implements ActionListener {
         
         login.setBounds( LEFT_MARGIN+100, 34,700,200);
         login.setFont(new Font("Century", Font.PLAIN, 60));
-      
         panel.add(login);
         JLabel userLabel = new JLabel("Username");
         userLabel.setBounds(LEFT_MARGIN+50, TOP_MARGIN, 80, 25);
         panel.add(userLabel);
-     
         userText = new JTextField(20);
         userText.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.GRAY));
         
@@ -132,7 +122,8 @@ public class LoginScreen extends JPanel implements ActionListener {
             MessageDigest hash = MessageDigest.getInstance("SHA-256");
             return new String(
                     Base64.getEncoder().encode(hash.digest(textBytes)));
-       } catch (NoSuchAlgorithmException ex) {
+        } 
+        catch (NoSuchAlgorithmException ex) {
             ex.printStackTrace();
         }
         return null;
@@ -230,7 +221,7 @@ class JUserButton extends JButton{
         
     }
 }
- class MyLabel extends JLabel{
+class MyLabel extends JLabel{
     private BufferedImage image0;
     private BufferedImage image1;
     private BufferedImage image2;
@@ -241,7 +232,6 @@ class JUserButton extends JButton{
         image0 = getTwoWayGradient(size, rightTop,leftBottom);
         image1 = getLeftGradient(size, leftTop);
         image2 = getRightGradient(size, rightBottom);
-       
         this.setPreferredSize(new Dimension(size, size1));
     }
 
