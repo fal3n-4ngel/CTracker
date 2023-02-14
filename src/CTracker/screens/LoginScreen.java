@@ -235,13 +235,13 @@ class JUserButton extends JButton{
     private BufferedImage image1;
     private BufferedImage image2;
     private Color noColor = new Color(255, 255, 255, 0);
-    private int size;
+    
     public MyLabel(int size,int size1, Color leftTop, Color rightTop, Color leftBottom, Color rightBottom){
         super();
         image0 = getTwoWayGradient(size, rightTop,leftBottom);
         image1 = getLeftGradient(size, leftTop);
         image2 = getRightGradient(size, rightBottom);
-        this.size = size;
+       
         this.setPreferredSize(new Dimension(size, size1));
     }
 
