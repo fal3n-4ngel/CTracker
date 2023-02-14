@@ -1,8 +1,5 @@
 package CTracker;
-import javax.swing.*;
-import java.awt.*;
 import javax.swing.JFrame;
-import CTracker.*;
 
 public class App {
 
@@ -15,7 +12,5 @@ public class App {
                 sc.createLogin();
             }
         });
-
-     
     }
 }

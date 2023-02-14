@@ -11,30 +11,21 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
-import java.awt.*;
 import java.awt.geom.Path2D;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.Font;
-import CTracker.util.globals;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
 import CTracker.util.Connector;
-import CTracker.HomePage.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
-import java.util.*;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import javax.swing.JPanel;
-import javax.imageio.ImageIO;
-import java.io.File;
-import java.io.IOException;
-import java.awt.image.BufferedImage;
 import static javax.swing.JOptionPane.*;
 
 public class LoginScreen extends JPanel implements ActionListener {
@@ -155,7 +146,10 @@ public class LoginScreen extends JPanel implements ActionListener {
                 ResultSet rs = Con.execute("SELECT PASS FROM Users WHERE NAME='" + userText.getText() + "'");
                 if (rs.next() == false) {
                     System.out.println("New User");
-                    showMessageDialog(null, "User not registered!", "Error", ERROR_MESSAGE);
+                    Con.execute("INSERT INTO Users('name','pass') VALUES('" + userText.getText() +"','"+ encode(passwordText.getText()) + "')");
+                    showMessageDialog(null, "Creatin a new User", "NEW USER", ERROR_MESSAGE);
+                    parentFrame.getContentPane().setVisible(false);
+                    parentFrame.setContentPane(new HomePage(parentFrame, userText.getText()));
                     return;
                 }
                 // hash the password
@@ -244,8 +238,6 @@ class JUserButton extends JButton{
         setText(content);
         setBorder(new RoundedBorder(new Color(255, 255, 255),1,20));
         setForeground(Color.WHITE);
-        //new Color(68,217,182,255)
-        
         setBackground(new Color(68,217,182,255));
         setFont(new Font("Century", Font.PLAIN, 18));
         
