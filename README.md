@@ -41,5 +41,11 @@
             <br />
             <sub><b>Jesny Jayan </b></sub>
         </a>
+    </td>
+    <td align="center">
+            <sub><b>Nithya Jose </b></sub>
+    </td>
+    <td align="center">
+            <sub><b>Sreelekshmi </b></sub>
     </td></tr>
 </table>
