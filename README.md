@@ -14,7 +14,7 @@
 
 ## Screenshots
 
-  <img width="500" src="https://i.postimg.cc/5Ndm9MbV/Screenshot-20230214-162706.png">
+  <img width="500" src="https://github.com/fal3n-4ngel/CTracker/blob/main/images/ID%20card%20screen.png">
 
 
 ## Contributors
